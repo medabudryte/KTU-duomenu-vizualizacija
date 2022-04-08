@@ -30,7 +30,7 @@ Atsakymas:
 
 Išvados:
 
-
+ 
 ### 4. Užduotis
 
 Shiny R aplikacijos nuotrauka:
