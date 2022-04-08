@@ -1,21 +1,28 @@
 library(shiny)
-library(readr)
+library(dplyr)
 library(tidyverse)
-duom = read.csv("lab_sodra.csv")
-duom = duom[duom$ecoActCode = 681000,]
+# data input
+duom = read.csv("lab_sodra.csv", encoding = "UTF-8")
+duom = duom[duom$ecoActCode == 681000,]
+
+# front end
 ui = fluidPage(
   
-  titlePanel("Imoniu vidutinio atlyginimo grafikai"),
+  titlePanel("681000"),
+  
   sidebarLayout(
     sidebarPanel(
-      selectInput("Company", "Iveskite imones koda", distinct(duom, duom$code))),
+      selectInput("company", "Choose company", distinct(duom, duom$code))
+    ),
+    
     mainPanel(
       plotOutput("distPlot")
     )
   )
 )
 
-server = function(input, output, session) {
+# back end
+server = function(input, output, session){
   output$distPlot = renderPlot({
     duom[duom$code ==input$company,] %>%
       select(month, avgWage) %>%
