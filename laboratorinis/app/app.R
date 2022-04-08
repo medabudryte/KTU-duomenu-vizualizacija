@@ -5,10 +5,10 @@ duom = read.csv("lab_sodra.csv")
 duom = duom[duom$ecoActCode = 681000,]
 ui = fluidPage(
   
-  titlePanel("Companie's Average Wage Graphing"),
+  titlePanel("Imoniu vidutinio atlyginimo grafikai"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("Company", "Imones kodas", distinct(duom, duom$code))),
+      selectInput("Company", "Iveskite imones koda", distinct(duom, duom$code))),
     mainPanel(
       plotOutput("distPlot")
     )
